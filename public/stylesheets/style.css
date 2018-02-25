@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.slickImg{
+  max-height: 100%;
+  max-width: 100%
+}
+
+.slickContainer{
+  height: calc(100% - 2rem);
+  text-align: center;
+  margin: 1rem;
+}
+
+.background{
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  background-image: url("../images/Hired.jpg");
+  position: fixed;
+  left: 0;
+  height:100vh;
+  width: 100vw;
+  background-size: cover;
 }
