@@ -41,21 +41,4 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-// ----------------------------------------
-// Server
-// ----------------------------------------
-const port = process.env.PORT || process.argv[2] || 3001;
-const host = "localhost";
-
-let args;
-process.env.NODE_ENV === "production" ? (args = [port]) : (args = [port, host]);
-
-args.push(() => {
-  console.log(`Listening: http://${host}:${port}\n`);
-});
-
-if (require.main === module) {
-  app.listen.apply(app, args);
-}
-
 module.exports = app;
