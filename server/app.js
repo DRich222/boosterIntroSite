@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var express = require("express");
 var path = require("path");
 var logger = require("morgan");
@@ -8,6 +10,7 @@ var index = require("./routes/index");
 var signup = require("./routes/signup");
 var users = require("./routes/users");
 
+var database = require("./config/database");
 var app = express();
 
 // view engine setup
