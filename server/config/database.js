@@ -1,5 +1,5 @@
-require("dotenv").config({ path: "./.." });
-
+var path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "/../.env") });
 var Connection = require("tedious").Connection;
 var config = {
   server: process.env.SERVER,
