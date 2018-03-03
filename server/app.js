@@ -24,13 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(cors());
 
-// app.use(function(req, res, next) {
-//   let ipAddress = req.ip || req.connection.remoteAddress;
-
-//   // This is where we'll make the call to the database to store the ipAddress
-
-//   next();
+// app.use((req, res, next)=>{
+//     database.recordVisit(req, res);
+//     next(req,res);
 // });
+
 app.use("/signup", signup);
 app.use("/", index);
 
@@ -41,6 +39,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -50,6 +49,8 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+  next(req,res)
 });
+
 
 module.exports = app;
