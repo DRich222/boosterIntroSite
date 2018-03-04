@@ -5,7 +5,7 @@ import MainContent from "./mainContent"
 const Page = ()=>{
     return(
         <div className="container-fluid">
-
+            <div className="background"></div>
             <Navbar/>
             <MainContent/>
         </div>
