@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
+var recordEmail = require("../lib/procedures").recordEmail;
 
 router.post("/", function(req, res, next) {
-  console.log("attempted signup");
-  console.log("req.body is ", req.body);
+  recordEmail(req);
   res.end();
 });
 

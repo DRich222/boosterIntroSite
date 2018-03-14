@@ -13,6 +13,7 @@ class SignUp extends Component {
       headers: { "content-type": "application/json" }
     };
     console.log(options.body);
+    console.log(server);
     fetch(`${server}/signup`, options);
   }
   render() {

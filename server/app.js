@@ -8,11 +8,21 @@ var cors = require("cors");
 var index = require("./routes/index");
 var signup = require("./routes/signup");
 var users = require("./routes/users");
+var session = require("express-session");
+
+//--------------------------------------------
+// Connect to Remote Database
+//--------------------------------------------
 
 var database = require("./config/database");
+
 var app = express();
+
+//--------------------------------------------
+//  Tedious SQL Procedures for Remote Database
+//--------------------------------------------
+
 var procedures = require("./lib/procedures");
-var session = require("express-session");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -24,6 +34,10 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+//--------------------------------------------
+// Implement Sessions
+//--------------------------------------------
 app.use(
   session({
     secret: process.env.SECRET || "keyboard catty",
@@ -33,13 +47,25 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
+//--------------------------------------------
+// Middleware to Track Visitors
+//--------------------------------------------
+
+app.use(async (req, res, next) => {
   console.log("recording a visit");
   procedures.recordVisit(req);
   next();
 });
 
+//--------------------------------------------
+// Set static assets to the Production React Build
+//--------------------------------------------
+
 app.use(express.static(path.join(__dirname, "../client/build")));
+
+//--------------------------------------------
+// Attach Route Handlers
+//--------------------------------------------
 
 app.use("/signup", signup);
 app.use("/", index);
