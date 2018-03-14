@@ -54,9 +54,8 @@ function sqlRequestProcessResult(err, rowCount) {
 // Procedure to Record an Email Address
 //--------------------------------------------
 
-function recordEmail(req) {
-  const email = req.body.email,
-    ipAddress = req.connection.remoteAddress,
+function recordEmail(email) {
+  const ipAddress = req.connection.remoteAddress,
     sqlRecordEmail = `EXEC [addEmailSubmission] '${email}', '${ipAddress}'`;
 
   const sqlRequest = new tedious.Request(
