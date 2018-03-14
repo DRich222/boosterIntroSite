@@ -1,4 +1,21 @@
 import React from "react";
+import server from "../server";
+
+//Sign Up function that makes a POST request to the server
+const signUp = e => {
+    e.preventDefault();
+    let body = { email: e.target.email.value };
+    const options = {
+        method: "POST",
+        credentials: "same-origin",
+        body: JSON.stringify(body),
+        headers: { "content-type": "application/json" }
+    };
+    console.log(options.body);
+    console.log(server);
+    fetch(`${server}/signup`, options);
+    e.target.reset();
+};
 
 const Navbar = () => {
     return (
@@ -17,14 +34,13 @@ const Navbar = () => {
             >
                 <span className="navbar-toggler-icon" />
             </button>
-            <div
-                className="my-2 my-lg-0 ml-auto"
-            >
-                <form className="form-inline">
+            <div className="my-2 my-lg-0 ml-auto">
+                <form className="form-inline" onSubmit={signUp}>
                     <input
                         className="form-control mr-sm-2"
                         placeholder="Email"
                         aria-label="Email"
+                        name="email"
                     />
                     <button
                         className="btn btn-outline-success my-2 my-sm-0"
@@ -33,7 +49,9 @@ const Navbar = () => {
                         Submit
                     </button>
                 </form>
-                <div style={{textAlign: "right"}}>Yes! We deal with these challenges!</div>
+                <div style={{ textAlign: "right" }}>
+                    Yes! We deal with these challenges!
+                </div>
             </div>
         </nav>
     );
