@@ -52,6 +52,11 @@ app.use(
 //--------------------------------------------
 
 app.use(async (req, res, next) => {
+
+    if(req.body.email !== undefined){
+        next();
+        return;
+    }
   console.log("recording a visit");
   procedures.recordVisit(req);
   next();

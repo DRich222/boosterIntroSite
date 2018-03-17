@@ -1,4 +1,5 @@
 import React from "react";
+import server from "../server";
 
 class EmailForm extends React.Component{
 
@@ -15,19 +16,30 @@ class EmailForm extends React.Component{
     submitEmail = (e)=>{
         console.log("Email sent");
         e.preventDefault();
-        const options = {
+        const body = {email: this.state.email}
+            , options = {
             method: 'post'
-            , body: this.state.email
+            , credentials: "same-origin"
+            , body: JSON.stringify(body)
+            , headers: { "content-type": "application/json" }
         };
 
-        fetch("http://localhost:3000/signup",options)
+        if(body.email.trim() === ""){
+            console.log("No email entered");
+            return;
+        }
+
+        fetch(`${server}/signup`,options)
             .then(()=>{console.log("Email submitted successfully")})
 
     };
 
     render() {
         return (
-            <div className="my-2 my-lg-0 ml-auto">
+            <div
+                className="my-2 my-lg-0 ml-auto"
+                // className="my-2 my-lg-0 ml-auto"
+            >
                 <form className="form-inline" onSubmit={e => this.submitEmail(e)}>
                     <input
                         name="email"
@@ -40,7 +52,6 @@ class EmailForm extends React.Component{
                     <button
                         className="btn btn-outline-primary my-2 my-sm-0"
                         type="submit"
-
                     >
                         Submit
                     </button>
