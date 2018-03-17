@@ -20,3 +20,53 @@
     background-size: cover;
     opacity: .5;
 }
+
+.boosterNav{
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+}
+
+.smallText{
+    color: gainsboro;
+    font-size: small;
+}
+
+.navBarSpacer{
+    height: 78px;
+}
+
+.navBack{
+    height: 78px;
+    width: 100%;
+    top:0;
+    position: fixed;
+    z-index: 9;
+    opacity: .95;
+    margin: 0 -15px;
+    background-color: #2F2F2F;
+}
+
+.navLogo{
+    height: 52px;
+}
+
+.navLogoText{
+    margin: 0 5px;
+    font-size: 26px;
+}
+
+.navText{
+    color: gainsboro;
+}
+
+body{
+    font-family: Roboto, sans-serif;
+}
+
+/*Modified Bootstrap classes*/
+
+.navbar{
+    margin: 0 -15px;
+}
