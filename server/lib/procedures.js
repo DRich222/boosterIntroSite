@@ -34,6 +34,7 @@ async function recordVisit(req) {
         resolve(rowCount);
       }
     });
+      connection.execSql(sqlRequest);
   });
 
   //Execute Promise with async/await
@@ -54,9 +55,10 @@ function sqlRequestProcessResult(err, rowCount) {
 // Procedure to Record an Email Address
 //--------------------------------------------
 
-function recordEmail(email) {
+function recordEmail(req) {
   const ipAddress = req.connection.remoteAddress,
-    sqlRecordEmail = `EXEC [addEmailSubmission] '${email}', '${ipAddress}'`;
+      email = req.body.email,
+      sqlRecordEmail = `EXEC [addEmailSubmission] '${email}', '${ipAddress}'`;
 
   const sqlRequest = new tedious.Request(
     sqlRecordEmail,
