@@ -14,7 +14,6 @@ class EmailForm extends React.Component{
     };
 
     submitEmail = (e)=>{
-        console.log("Email sent");
         e.preventDefault();
         const body = {email: this.state.email}
             , options = {
@@ -36,10 +35,7 @@ class EmailForm extends React.Component{
 
     render() {
         return (
-            <div
-                className="my-2 my-lg-0 ml-auto"
-                // className="my-2 my-lg-0 ml-auto"
-            >
+            <div className="my-2 my-lg-0 ml-auto">
                 <form className="form-inline" onSubmit={e => this.submitEmail(e)}>
                     <input
                         name="email"

@@ -13,9 +13,11 @@ var config = {
   }
 };
 
+
 var connection = new tedious.Connection(config);
 
 connection.on("connect", function(err) {
+  console.log(config);
   if (err) {
     console.error("ERROR", err);
   } else console.log("successfully connected");
