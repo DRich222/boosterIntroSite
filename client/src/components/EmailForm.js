@@ -24,12 +24,12 @@ class EmailForm extends React.Component{
         };
 
         if(body.email.trim() === ""){
-            console.log("No email entered");
+            alert('Please enter an email');
             return;
         }
 
         fetch(`${server}/signup`,options)
-            .then(()=>{console.log("Email submitted successfully")})
+            .then(()=>{alert('Email submitted.  Thank you!')});
 
     };
 
